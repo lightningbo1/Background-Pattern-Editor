@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en" class="dark"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parallel Flowing Lines Banner</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          sitebg: '#10172b',
+        }
+      }
+    }
+  }
+</script>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&amp;family=Inter:wght@300;400;500;600;700&amp;family=Montserrat:wght@300;400;600;700&amp;family=Outfit:wght@300;400;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;family=Roboto:wght@300;400;500;700&amp;family=Space+Grotesk:wght@300;400;600&amp;display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0b0f19;
+    color: #f8fafc;
+  }
+  
+  /* Container Edge Fade Mask */
+  .edge-mask {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 40px,
+      black calc(100% - 40px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 40px,
+      black calc(100% - 40px),
+      transparent 100%
+    );
+  }
+
+  /* Editable outline hint */
+  [contenteditable="true"] {
+    outline: 1px dashed rgba(99, 102, 241, 0.4);
+    border-radius: 4px;
+    padding: 2px 4px;
+    transition: all 0.2s ease;
+  }
+  [contenteditable="true"]:focus {
+    outline: 2px solid #6366f1;
+    background-color: rgba(15, 23, 42, 0.6);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0f172a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+  }
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.bottom-6{bottom:1.5rem}.right-6{right:1.5rem}.bottom-2{bottom:0.5rem}.right-2{right:0.5rem}.z-0{z-index:0}.z-10{z-index:10}.z-30{z-index:30}.z-50{z-index:50}.col-span-12{grid-column:span 12 / span 12}.mb-1\.5{margin-bottom:0.375rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mr-1\.5{margin-right:0.375rem}.mb-0\.5{margin-bottom:0.125rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-14{height:3.5rem}.h-3{height:0.75rem}.h-3\.5{height:0.875rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-full{height:100%}.h-screen{height:100vh}.h-48{height:12rem}.max-h-80{max-height:20rem}.max-h-\[90vh\]{max-height:90vh}.min-h-\[520px\]{min-height:520px}.min-h-screen{min-height:100vh}.w-1\.5{width:0.375rem}.w-1\/2{width:50%}.w-1\/3{width:33.333333%}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-2\/3{width:66.666667%}.w-3{width:0.75rem}.w-3\.5{width:0.875rem}.w-3\/4{width:75%}.w-4{width:1rem}.w-5{width:1.25rem}.w-64{width:16rem}.w-8{width:2rem}.w-full{width:100%}.w-px{width:1px}.max-w-3xl{max-width:48rem}.max-w-5xl{max-width:64rem}.flex-1{flex:1 1 0%}.translate-y-3{--tw-translate-y:0.75rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.cursor-pointer{cursor:pointer}.select-all{-webkit-user-select:all;user-select:all}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-3{gap:0.75rem}.gap-6{gap:1.5rem}.space-x-1 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.25rem * var(--tw-space-x-reverse));margin-left:calc(0.25rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.375rem * var(--tw-space-x-reverse));margin-left:calc(0.375rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-3 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.75rem * var(--tw-space-x-reverse));margin-left:calc(0.75rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.overflow-x-hidden{overflow-x:hidden}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-emerald-500\/20{border-color:rgb(16 185 129 / 0.2)}.border-indigo-500{--tw-border-opacity:1;border-color:rgb(99 102 241 / var(--tw-border-opacity, 1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-transparent{border-color:transparent}.border-slate-800\/80{border-color:rgb(30 41 59 / 0.8)}.bg-\[\#090d16\]{--tw-bg-opacity:1;background-color:rgb(9 13 22 / var(--tw-bg-opacity, 1))}.bg-\[\#0f172a\]{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-\[\#10172b\]{--tw-bg-opacity:1;background-color:rgb(16 23 43 / var(--tw-bg-opacity, 1))}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.bg-emerald-500\/10{background-color:rgb(16 185 129 / 0.1)}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-green-500\/80{background-color:rgb(34 197 94 / 0.8)}.bg-indigo-600{--tw-bg-opacity:1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.bg-indigo-950\/30{background-color:rgb(30 27 75 / 0.3)}.bg-red-500\/80{background-color:rgb(239 68 68 / 0.8)}.bg-slate-400{--tw-bg-opacity:1;background-color:rgb(148 163 184 / var(--tw-bg-opacity, 1))}.bg-slate-700{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-slate-900\/95{background-color:rgb(15 23 42 / 0.95)}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23 / var(--tw-bg-opacity, 1))}.bg-slate-950\/30{background-color:rgb(2 6 23 / 0.3)}.bg-slate-950\/40{background-color:rgb(2 6 23 / 0.4)}.bg-slate-950\/50{background-color:rgb(2 6 23 / 0.5)}.bg-slate-950\/80{background-color:rgb(2 6 23 / 0.8)}.bg-yellow-500\/80{background-color:rgb(234 179 8 / 0.8)}.bg-red-950\/40{background-color:rgb(69 10 10 / 0.4)}.bg-slate-900\/60{background-color:rgb(15 23 42 / 0.6)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.object-cover{object-fit:cover}.p-0\.5{padding:0.125rem}.p-1{padding:0.25rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-2\.5{padding:0.625rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.pt-2{padding-top:0.5rem}.pt-3{padding-top:0.75rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-indigo-400{--tw-text-opacity:1;color:rgb(129 140 248 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-red-400{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.accent-indigo-500{accent-color:#6366f1}.opacity-0{opacity:0}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-indigo-600\/30{--tw-shadow-color:rgb(79 70 229 / 0.3);--tw-shadow:var(--tw-shadow-colored)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.hover\:border-indigo-500:hover{--tw-border-opacity:1;border-color:rgb(99 102 241 / var(--tw-border-opacity, 1))}.hover\:border-slate-700:hover{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.hover\:bg-indigo-500:hover{--tw-bg-opacity:1;background-color:rgb(99 102 241 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-700:hover{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-900:hover{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.hover\:text-slate-200:hover{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:text-red-300:hover{--tw-text-opacity:1;color:rgb(252 165 165 / var(--tw-text-opacity, 1))}.focus\:border-indigo-500:focus{--tw-border-opacity:1;border-color:rgb(99 102 241 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.group:hover .group-hover\:opacity-100{opacity:1}@media (min-width: 768px){.md\:col-span-6{grid-column:span 6 / span 6}.md\:col-span-4{grid-column:span 4 / span 4}.md\:col-span-8{grid-column:span 8 / span 8}.md\:h-56{height:14rem}}@media (min-width: 1024px){.lg\:p-10{padding:2.5rem}}@media (min-width: 1280px){.xl\:w-\[420px\]{width:420px}.xl\:flex-row{flex-direction:row}}</style></head>
+<body class="min-h-screen flex flex-col xl:flex-row overflow-x-hidden">
+
+  <!-- LEFT SIDEBAR: Controls & Editor -->
+  <aside class="w-full xl:w-[420px] bg-slate-900/95 backdrop-blur border-r border-slate-800 flex flex-col h-screen z-30 shadow-2xl">
+    <!-- Header -->
+    <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950/50">
+      <div class="flex items-center space-x-3">
+        <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-600/30">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
+        </div>
+        <div>
+          <h1 class="font-bold text-sm text-white tracking-wide">Google Sites Embed Studio</h1>
+          <p class="text-xs text-slate-400">Interactive Content Block Builder</p>
+        </div>
+      </div>
+      <button id="exportModalBtn" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg shadow-md transition flex items-center space-x-1.5">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+        <span>Get Code</span>
+      </button>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="flex border-b border-slate-800 bg-slate-950/30 text-xs font-medium">
+      <button onclick="switchTab('layouts')" id="tab-layouts" class="flex-1 py-3 text-center border-b-2 border-indigo-500 text-white transition">Layouts</button>
+      <button onclick="switchTab('lines')" id="tab-lines" class="flex-1 py-3 text-center border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition">Line Designs</button>
+      <button onclick="switchTab('typography')" id="tab-typography" class="flex-1 py-3 text-center border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition">Typography</button>
+      <button onclick="switchTab('style')" id="tab-style" class="flex-1 py-3 text-center border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition">Background</button>
+    </div>
+
+    <!-- Tab Contents Scroll Area -->
+    <div class="flex-1 overflow-y-auto p-5 space-y-6 text-sm">
+      
+      <!-- TAB 1: LAYOUTS -->
+      <div id="panel-layouts" class="space-y-4">
+        <div>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Google Sites Layout Grid Presets</h2>
+          <div class="grid grid-cols-2 gap-3">
+            <button onclick="selectLayoutPreset('1-col')" class="layout-btn group p-3 rounded-xl border text-left transition" data-layout="1-col">
+              <div class="flex space-x-1.5 mb-2">
+                <div class="w-1/2 h-8 bg-slate-800 rounded"></div>
+                <div class="w-1/2 space-y-1"><div class="h-1.5 w-full bg-slate-700 rounded"></div><div class="h-1.5 w-3/4 bg-slate-800 rounded"></div></div>
+              </div>
+              <span class="text-xs font-medium text-slate-200">1 Image + Text</span>
+            </button>
+
+            <button onclick="selectLayoutPreset('img-only')" class="layout-btn group p-3 rounded-xl border border-slate-800 hover:border-indigo-500 bg-slate-950/40 text-left transition" data-layout="img-only">
+              <div class="mb-2">
+                <div class="h-8 w-full bg-slate-800 rounded"></div>
+              </div>
+              <span class="text-xs font-medium text-slate-200">Image Only</span>
+            </button>
+
+            <button onclick="selectLayoutPreset('2-col')" class="layout-btn group p-3 rounded-xl border border-slate-800 hover:border-indigo-500 bg-slate-950/40 text-left transition" data-layout="2-col">
+              <div class="grid grid-cols-2 gap-1 mb-2">
+                <div class="h-8 bg-slate-800 rounded"></div>
+                <div class="h-8 bg-slate-800 rounded"></div>
+              </div>
+              <span class="text-xs font-medium text-slate-200">2 Columns</span>
+            </button>
+
+            <button onclick="selectLayoutPreset('3-col')" class="layout-btn group p-3 rounded-xl border border-slate-800 hover:border-indigo-500 bg-slate-950/40 text-left transition" data-layout="3-col">
+              <div class="grid grid-cols-3 gap-1 mb-2">
+                <div class="h-8 bg-slate-800 rounded"></div>
+                <div class="h-8 bg-slate-800 rounded"></div>
+                <div class="h-8 bg-slate-800 rounded"></div>
+              </div>
+              <span class="text-xs font-medium text-slate-200">3 Columns</span>
+            </button>
+
+            <button onclick="selectLayoutPreset('asym')" class="layout-btn group p-3 rounded-xl border border-slate-800 hover:border-indigo-500 bg-slate-950/40 text-left transition" data-layout="asym">
+              <div class="flex space-x-1 mb-2">
+                <div class="w-1/3 space-y-1"><div class="h-3.5 bg-slate-800 rounded"></div><div class="h-3.5 bg-slate-800 rounded"></div></div>
+                <div class="w-2/3 h-8 bg-slate-800 rounded"></div>
+              </div>
+              <span class="text-xs font-medium text-slate-200">Asymmetrical</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Column Layout Controls</h3>
+            <span class="text-[11px] text-indigo-400 font-mono">12-Grid System</span>
+          </div>
+
+          <div class="flex space-x-2">
+            <button onclick="addColumn()" class="flex-1 py-2 bg-slate-800 hover:bg-slate-700 text-xs font-medium rounded-lg text-slate-200 transition flex items-center justify-center space-x-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+              <span>Add Column</span>
+            </button>
+            <button onclick="resetLayoutColumns()" class="px-3 py-2 bg-slate-900 border border-slate-800 hover:bg-slate-800 text-xs font-medium rounded-lg text-slate-400 transition">Reset Columns</button>
+          </div>
+
+          <div id="columnSettingsList" class="space-y-2 pt-2"></div>
+        </div>
+      </div>
+
+      <!-- TAB 2: LINE DESIGNS -->
+      <div id="panel-lines" class="space-y-5 hidden">
+        <div>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Animated Background Line Designs</h2>
+          <div class="space-y-2.5" id="designList"></div>
+        </div>
+
+        <div class="space-y-4 pt-3 border-t border-slate-800">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Motion &amp; Line Controls</h2>
+          
+          <div>
+            <div class="flex justify-between text-xs mb-1.5">
+              <span class="text-slate-300">Line Density / Count</span>
+              <span id="lineCountVal" class="text-indigo-400 font-mono">16</span>
+            </div>
+            <input type="range" id="lineCountSlider" min="6" max="36" value="16" class="w-full accent-indigo-500 cursor-pointer" oninput="updateSettings()">
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs mb-1.5">
+              <span class="text-slate-300">Animation Speed</span>
+              <span id="speedVal" class="text-indigo-400 font-mono">10s</span>
+            </div>
+            <input type="range" id="speedSlider" min="3" max="25" value="10" step="0.5" class="w-full accent-indigo-500 cursor-pointer" oninput="updateSettings()">
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs mb-1.5">
+              <span class="text-slate-300">Line Stroke Color</span>
+              <span id="lineColorHex" class="text-indigo-400 font-mono">#ffffff</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <input type="color" id="lineColorPicker" value="#ffffff" onchange="updateSettings()" class="w-10 h-9 bg-slate-950 border border-slate-800 rounded-lg cursor-pointer p-1">
+              <span class="text-xs text-slate-400">Default: Pure White</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-2">
+            <span class="text-xs text-slate-300">Neon Glow Effect</span>
+            <button id="toggleGlowBtn" onclick="toggleGlow()" class="w-11 h-6 bg-slate-800 rounded-full transition relative p-0.5 border border-slate-700">
+              <div id="glowThumb" class="w-5 h-5 bg-slate-400 rounded-full transition transform"></div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: TYPOGRAPHY -->
+      <div id="panel-typography" class="space-y-4 hidden">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Typography Customization</h2>
+        
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1.5">Google Font Family</label>
+          <select id="fontSelect" onchange="updateSettings()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+            <option value="Inter">Inter (Clean Modern)</option>
+            <option value="Roboto">Roboto (Google Classic)</option>
+            <option value="Playfair Display">Playfair Display (Serif Editorial)</option>
+            <option value="Montserrat">Montserrat (Geometric Bold)</option>
+            <option value="Space Grotesk">Space Grotesk (Tech Minimal)</option>
+            <option value="Fira Code">Fira Code (Monospace Code)</option>
+            <option value="Outfit">Outfit (Sleek Rounded)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1.5">Custom Google Font (paste family name)</label>
+          <div class="flex space-x-2">
+            <input id="customFontInput" type="text" placeholder="e.g. Bebas Neue" class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+            <button onclick="applyCustomFont()" class="px-3 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-xl shadow-md transition">Load</button>
+          </div>
+          <p id="customFontStatus" class="text-[11px] text-slate-500 mt-1">Type any family name from fonts.google.com</p>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-xs mb-1.5">
+            <span class="text-slate-300">Heading Size (px)</span>
+            <span id="fontSizeVal" class="text-indigo-400 font-mono">36px</span>
+          </div>
+          <input type="range" id="fontSizeSlider" min="18" max="72" value="36" step="1" class="w-full accent-indigo-500 cursor-pointer" oninput="updateSettings()">
+        </div>
+
+        <div>
+          <div class="flex justify-between text-xs mb-1.5">
+            <span class="text-slate-300">Paragraph Body Size (px)</span>
+            <span id="bodySizeVal" class="text-indigo-400 font-mono">16px</span>
+          </div>
+          <input type="range" id="bodySizeSlider" min="12" max="24" value="16" step="1" class="w-full accent-indigo-500 cursor-pointer" oninput="updateSettings()">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5">Heading Text Color</label>
+            <div class="flex items-center space-x-2">
+              <input type="color" id="textColorPicker" value="#ffffff" onchange="updateSettings()" class="w-10 h-9 bg-slate-950 border border-slate-800 rounded-lg cursor-pointer p-1">
+              <span id="textColorHex" class="text-xs font-mono text-slate-400">#ffffff</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5">Body Text Color</label>
+            <div class="flex items-center space-x-2">
+              <input type="color" id="bodyColorPicker" value="#cbd5e1" onchange="updateSettings()" class="w-10 h-9 bg-slate-950 border border-slate-800 rounded-lg cursor-pointer p-1">
+              <span id="bodyColorHex" class="text-xs font-mono text-slate-400">#cbd5e1</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1.5">Global Text Alignment</label>
+          <div class="flex bg-slate-950 border border-slate-800 rounded-xl p-1">
+            <button onclick="setTextAlign('left')" id="align-left" class="flex-1 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">Left</button>
+            <button onclick="setTextAlign('center')" id="align-center" class="flex-1 py-1.5 rounded-lg text-xs font-medium text-white bg-indigo-600 transition">Center</button>
+            <button onclick="setTextAlign('right')" id="align-right" class="flex-1 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">Right</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: BACKGROUND & CONTAINER STYLE -->
+      <div id="panel-style" class="space-y-4 hidden">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Container &amp; Background Styling</h2>
+        
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1.5">Background Fill Color</label>
+          <div class="flex items-center space-x-3">
+            <input type="color" id="bgColorPicker" value="#10172b" onchange="updateSettings()" class="w-10 h-9 bg-slate-950 border border-slate-800 rounded-lg cursor-pointer p-1">
+            <span id="bgColorHex" class="text-xs font-mono text-slate-300">#10172b</span>
+            <button onclick="setBgPreset('#10172b')" class="px-2 py-1 bg-[#10172b] border border-slate-700 text-[10px] rounded text-white">Default</button>
+            <button onclick="setBgPreset('#090d16')" class="px-2 py-1 bg-[#090d16] border border-slate-700 text-[10px] rounded text-white">Darker</button>
+            <button onclick="setBgPreset('#0f172a')" class="px-2 py-1 bg-[#0f172a] border border-slate-700 text-[10px] rounded text-white">Slate</button>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <div class="flex justify-between text-xs mb-1.5">
+            <span class="text-slate-300">Card Background Opacity</span>
+            <span id="cardOpacityVal" class="text-indigo-400 font-mono">0.40</span>
+          </div>
+          <input type="range" id="cardOpacitySlider" min="0" max="1" step="0.05" value="0.4" class="w-full accent-indigo-500 cursor-pointer" oninput="updateSettings()">
+        </div>
+
+        <div class="flex items-center justify-between pt-2">
+          <span class="text-xs text-slate-300">Card Background Blur</span>
+          <button id="toggleBlurBtn" onclick="toggleBlur()" class="w-11 h-6 bg-slate-800 rounded-full transition relative p-0.5 border border-slate-700">
+            <div id="blurThumb" class="w-5 h-5 bg-slate-400 rounded-full transition transform"></div>
+          </button>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800 space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Card Borders</h3>
+            <button id="toggleBorderBtn" onclick="toggleBorder()" class="w-11 h-6 bg-slate-800 rounded-full transition relative p-0.5 border border-slate-700">
+              <div id="borderThumb" class="w-5 h-5 bg-slate-400 rounded-full transition transform"></div>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1.5">Border Color</label>
+              <div class="flex items-center space-x-2">
+                <input type="color" id="borderColorPicker" value="#1e293b" onchange="updateSettings()" class="w-10 h-9 bg-slate-950 border border-slate-800 rounded-lg cursor-pointer p-1">
+                <span id="borderColorHex" class="text-xs font-mono text-slate-400">#1e293b</span>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1.5">
+                <span class="text-slate-300">Border Width</span>
+                <span id="borderWidthVal" class="text-indigo-400 font-mono">1px</span>
+              </div>
+              <input type="range" id="borderWidthSlider" min="0" max="6" step="1" value="1" class="w-full accent-indigo-500 cursor-pointer" oninput="updateSettings()">
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs mb-1.5">
+              <span class="text-slate-300">Corner Radius</span>
+              <span id="borderRadiusVal" class="text-indigo-400 font-mono">16px</span>
+            </div>
+            <input type="range" id="borderRadiusSlider" min="0" max="32" step="2" value="16" class="w-full accent-indigo-500 cursor-pointer" oninput="updateSettings()">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="p-4 border-t border-slate-800 bg-slate-950/50 flex items-center justify-between text-xs text-slate-400">
+      <span>Direct Inline Editing Active</span>
+      <button onclick="resetDefaults()" class="hover:text-white transition underline">Reset Defaults</button>
+    </div>
+  </aside>
+
+  <!-- MAIN WORKSPACE: Google Sites Preview Frame -->
+  <main class="flex-1 flex flex-col h-screen overflow-hidden bg-slate-950">
+    <!-- Top Bar Mocking Google Sites Browser Window -->
+    <header class="h-14 bg-slate-900 border-b border-slate-800 px-6 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="flex space-x-1.5">
+          <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+        </div>
+        <div class="h-4 w-px bg-slate-800"></div>
+        <div class="flex items-center space-x-2 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800 text-xs text-slate-400 w-64">
+          <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+          <span class="truncate">sites.google.com/view/my-portfolio/home</span>
+        </div>
+      </div>
+      
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse mr-1.5"></span>
+          Direct Canvas Editor (Click Text to Edit)
+        </span>
+      </div>
+    </header>
+
+    <!-- Preview Container simulating Google Sites Page Canvas (seamless, full-bleed) -->
+    <div class="flex-1 overflow-y-auto flex bg-slate-950">
+      <div class="w-full relative overflow-hidden transition-colors duration-300" id="embedPreviewContainer" style="min-height: 520px; background-color: #10172b;">
+        
+        <!-- Animated Background Canvas -->
+        <canvas id="bgCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-0" width="928" height="520"></canvas>
+
+        <!-- Layout Content Layer -->
+        <div id="layoutContentWrapper" class="relative z-10 w-full flex flex-col justify-center" style="padding: 24px; min-height: 520px;"></div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- EXPORT CODE MODAL -->
+  <div id="exportModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+      <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950">
+        <div class="flex items-center space-x-2">
+          <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+          <h3 class="font-bold text-white text-base">Google Sites Embed Code</h3>
+        </div>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-4">
+        <p class="text-xs text-slate-400">Copy this self-contained HTML snippet, open your Google Sites page, click <strong>Embed</strong> &gt; <strong>Embed code</strong>, and paste it right in!</p>
+        
+        <div class="relative">
+          <pre id="codeOutput" class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-emerald-400 overflow-x-auto max-h-80 select-all"></pre>
+        </div>
+      </div>
+
+      <div class="p-5 border-t border-slate-800 bg-slate-950/50 flex justify-end space-x-3">
+        <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl transition">Close</button>
+        <button onclick="copyEmbedCode()" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-xl shadow-md transition flex items-center space-x-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 012-2v-8a2 2 0 01-2-2h-8a2 2 0 01-2 2v8a2 2 0 012 2z"></path></svg>
+          <span id="copyBtnText">Copy Code to Clipboard</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-emerald-600 text-white px-4 py-3 rounded-xl shadow-2xl text-xs font-semibold transition transform opacity-0 translate-y-3 pointer-events-none z-50 flex items-center space-x-2">
+    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+    <span id="toastMsg">Code copied successfully!</span>
+  </div>
+
+<script>
+  // --- APPLICATION STATE ---
+  const DEFAULT_IMG = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80';
+
+  let state = {
+    design: 'arcs',
+    lineCount: 16,
+    speed: 10,
+    lineColor: '#ffffff',
+    glow: false,
+    bgColor: '#10172b',
+    cardOpacity: 0.4,
+    blur: true,
+    showBorder: true,
+    borderColor: '#1e293b',
+    borderWidth: 1,
+    borderRadius: 16,
+    font: 'Inter',
+    fontSizePx: 36,
+    bodySizePx: 16,
+    textColor: '#ffffff',
+    bodyColor: '#cbd5e1',
+    align: 'center',
+    columns: [
+      {
+        id: 1,
+        span: 6,
+        type: 'image',
+        imgUrl: DEFAULT_IMG,
+        title: 'Flowing Motion System',
+        subtext: 'Click directly on any text inside this block to edit it live, just like Google Sites!'
+      },
+      {
+        id: 2,
+        span: 6,
+        type: 'text',
+        imgUrl: '',
+        title: 'Google Sites Flexible Grid',
+        subtext: 'You can adjust column span widths, add new columns, or delete unwanted content blocks effortlessly.'
+      }
+    ]
+  };
+
+  // --- LINE DESIGNS CONFIGURATION ---
+  const lineDesigns = [
+    { id: 'arcs', name: 'Flowing Parallel Arcs', desc: 'Smooth cascading parallel Bezier curves.' },
+    { id: 'topo', name: 'Topographic Contour Lines', desc: 'Concentric elevation loops pulsing organically.' },
+    { id: 'grid', name: 'Geometric & Grid Lines', desc: 'Isometric coordinate lines gliding smoothly.' },
+    { id: 'circuit', name: 'Circuit Board & Data Tracks', desc: 'Orthogonal glowing pathways and data nodes.' },
+    { id: 'neon', name: 'Retro Disco & Neon Waves', desc: 'Vibrant glowing sine waves with particle peaks.' },
+    { id: 'fluid', name: 'Abstract Fluid & Wavy Loops', desc: 'Swirling kinetic loops with smooth easing.' },
+    { id: 'wireframe', name: 'Architectural Wireframe Mesh', desc: '3D perspective terrain grid shifting dynamically.' },
+    { id: 'svg-arc', name: 'Parallel Sweeping Arc', desc: 'Classic sweeping bezier ribbons with dash flow.' },
+    { id: 'svg-helix', name: 'Helix / Wave Spiral', desc: 'Twisting spiral wave strands crossing the banner.' },
+    { id: 'svg-winding', name: 'Winding S-Curve', desc: 'Long S-shaped ribbons winding edge to edge.' },
+    { id: 'svg-daggered', name: 'Daggered / Zigzag', desc: 'Sharp angular zigzag lines slicing diagonally.' }
+  ];
+
+  // --- TAB SWITCHING ---
+  function switchTab(tabName) {
+    ['layouts', 'lines', 'typography', 'style'].forEach(t => {
+      const panel = document.getElementById(`panel-${t}`);
+      const tab = document.getElementById(`tab-${t}`);
+      if (panel) panel.classList.add('hidden');
+      if (tab) {
+        tab.classList.remove('border-indigo-500', 'text-white');
+        tab.classList.add('border-transparent', 'text-slate-400');
+      }
+    });
+    const activePanel = document.getElementById(`panel-${tabName}`);
+    const activeTab = document.getElementById(`tab-${tabName}`);
+    if (activePanel) activePanel.classList.remove('hidden');
+    if (activeTab) {
+      activeTab.classList.add('border-indigo-500', 'text-white');
+      activeTab.classList.remove('border-transparent', 'text-slate-400');
+    }
+  }
+
+  // --- PRESET LAYOUT SELECTOR ---
+  function selectLayoutPreset(preset) {
+    document.querySelectorAll('.layout-btn').forEach(btn => {
+      if(btn.dataset.layout === preset) {
+        btn.classList.add('border-indigo-500', 'bg-indigo-950/30');
+      } else {
+        btn.classList.remove('border-indigo-500', 'bg-indigo-950/30');
+      }
+    });
+
+    if (preset === '1-col') {
+      state.columns = [
+        {
+          id: Date.now(),
+          span: 6,
+          type: 'image',
+          imgUrl: DEFAULT_IMG,
+          title: 'Featured Canvas',
+          subtext: 'Click here to edit text directly in place.'
+        },
+        {
+          id: Date.now() + 1,
+          span: 6,
+          type: 'text',
+          imgUrl: '',
+          title: 'Flowing Motion System',
+          subtext: 'Continuous animated white lines cascading seamlessly across a rich backdrop.'
+        }
+      ];
+    } else if (preset === 'img-only') {
+      state.columns = [
+        {
+          id: Date.now(),
+          span: 12,
+          type: 'image-only',
+          imgUrl: DEFAULT_IMG,
+          title: '',
+          subtext: ''
+        }
+      ];
+    } else if (preset === '2-col') {
+      state.columns = [
+        {
+          id: Date.now(),
+          span: 6,
+          type: 'image',
+          imgUrl: DEFAULT_IMG,
+          title: 'Column One Title',
+          subtext: 'Edit descriptions live.'
+        },
+        {
+          id: Date.now() + 1,
+          span: 6,
+          type: 'image',
+          imgUrl: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
+          title: 'Column Two Title',
+          subtext: 'Edit descriptions live.'
+        }
+      ];
+    } else if (preset === '3-col') {
+      state.columns = [
+        { id: Date.now(), span: 4, type: 'image', imgUrl: DEFAULT_IMG, title: 'Feature 1', subtext: 'Inline text editor.' },
+        { id: Date.now() + 1, span: 4, type: 'image', imgUrl: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80', title: 'Feature 2', subtext: 'Inline text editor.' },
+        { id: Date.now() + 2, span: 4, type: 'image', imgUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80', title: 'Feature 3', subtext: 'Inline text editor.' }
+      ];
+    } else if (preset === 'asym') {
+      state.columns = [
+        { id: Date.now(), span: 4, type: 'text', imgUrl: '', title: 'Sidebar Summary', subtext: 'Google Sites asymmetrical block style.' },
+        { id: Date.now() + 1, span: 8, type: 'image', imgUrl: DEFAULT_IMG, title: 'Main Showcase', subtext: 'Detailed description box sitting over line waves.' }
+      ];
+    }
+
+    renderColumnControls();
+    renderLayoutContent();
+  }
+
+  function addColumn() {
+    if (state.columns.length >= 4) return;
+    const span = Math.max(3, Math.floor(12 / (state.columns.length + 1)));
+    state.columns.push({
+      id: Date.now(),
+      span: span,
+      type: 'text',
+      imgUrl: '',
+      title: 'New Column Title',
+      subtext: 'Click to edit content directly.'
+    });
+    renderColumnControls();
+    renderLayoutContent();
+  }
+
+  function removeColumn(id) {
+    if (state.columns.length <= 1) return;
+    state.columns = state.columns.filter(c => c.id !== id);
+    renderColumnControls();
+    renderLayoutContent();
+  }
+
+  function updateColumnSpan(id, spanVal) {
+    const col = state.columns.find(c => c.id === id);
+    if (col) {
+      col.span = parseInt(spanVal);
+      renderLayoutContent();
+    }
+  }
+
+  // Cycles: Text Only -> Has Image -> Image Only -> Text Only
+  function toggleColumnType(id) {
+    const col = state.columns.find(c => c.id === id);
+    if (!col) return;
+    const order = ['text', 'image', 'image-only'];
+    const idx = order.indexOf(col.type);
+    col.type = order[(idx + 1) % order.length];
+    if (col.type !== 'text' && !col.imgUrl) {
+      col.imgUrl = DEFAULT_IMG;
+    }
+    renderColumnControls();
+    renderLayoutContent();
+  }
+
+  function columnTypeLabel(type) {
+    if (type === 'image') return 'Has Image';
+    if (type === 'image-only') return 'Image Only';
+    return 'Text Only';
+  }
+
+  function renderColumnControls() {
+    const container = document.getElementById('columnSettingsList');
+    if (!container) return;
+    container.innerHTML = state.columns.map((col, idx) => `
+      <div class="p-2.5 bg-slate-950 border border-slate-800 rounded-xl space-y-2">
+        <div class="flex items-center justify-between text-xs">
+          <span class="font-bold text-slate-300">Col ${idx + 1} Width (Span ${col.span}/12)</span>
+          <div class="flex items-center space-x-1.5">
+            <button onclick="toggleColumnType(${col.id})" class="px-2 py-0.5 bg-slate-800 hover:bg-slate-700 text-[10px] text-indigo-400 rounded transition">${columnTypeLabel(col.type)}</button>
+            <button onclick="removeColumn(${col.id})" class="text-red-400 hover:text-red-300 text-[10px] px-1.5 py-0.5 bg-red-950/40 rounded">&times;</button>
+          </div>
+        </div>
+        <input type="range" min="2" max="12" step="1" value="${col.span}" class="w-full accent-indigo-500 cursor-pointer" oninput="updateColumnSpan(${col.id}, this.value)">
+      </div>
+    `).join('');
+  }
+
+  function resetLayoutColumns() {
+    selectLayoutPreset('1-col');
+  }
+
+  // --- RENDER DESIGN LIST ---
+  function renderDesignList() {
+    const container = document.getElementById('designList');
+    if (!container) return;
+    container.innerHTML = lineDesigns.map(d => `
+      <div onclick="setDesign('${d.id}')" class="p-3 rounded-xl border ${state.design === d.id ? 'border-indigo-500 bg-indigo-950/30' : 'border-slate-800 bg-slate-950/40 hover:border-slate-700'} cursor-pointer transition flex items-center justify-between">
+        <div>
+          <h4 class="text-xs font-bold text-white mb-0.5">${d.name}</h4>
+          <p class="text-[11px] text-slate-400">${d.desc}</p>
+        </div>
+        <div class="w-4 h-4 rounded-full border ${state.design === d.id ? 'border-indigo-500 bg-indigo-600' : 'border-slate-700'} flex items-center justify-center">
+          ${state.design === d.id ? '<div class="w-1.5 h-1.5 bg-white rounded-full"></div>' : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function setDesign(id) {
+    state.design = id;
+    renderDesignList();
+  }
+
+  function setTextAlign(align) {
+    state.align = align;
+    ['left', 'center', 'right'].forEach(a => {
+      const btn = document.getElementById(`align-${a}`);
+      if (btn) {
+        if(a === align) {
+          btn.classList.add('bg-indigo-600', 'text-white');
+          btn.classList.remove('text-slate-400');
+        } else {
+          btn.classList.remove('bg-indigo-600', 'text-white');
+          btn.classList.add('text-slate-400');
+        }
+      }
+    });
+    renderLayoutContent();
+  }
+
+  function setBgPreset(colorHex) {
+    state.bgColor = colorHex;
+    const picker = document.getElementById('bgColorPicker');
+    if (picker) picker.value = colorHex;
+    updateSettings();
+  }
+
+  // --- SWITCH HELPERS ---
+  function applySwitch(btnId, thumbId, on) {
+    const btn = document.getElementById(btnId);
+    const thumb = document.getElementById(thumbId);
+    if (!btn || !thumb) return;
+    if (on) {
+      thumb.style.transform = 'translateX(20px)';
+      thumb.style.backgroundColor = '#ffffff';
+      btn.style.backgroundColor = '#4f46e5';
+    } else {
+      thumb.style.transform = 'translateX(0px)';
+      thumb.style.backgroundColor = '#94a3b8';
+      btn.style.backgroundColor = '#1e293b';
+    }
+  }
+
+  function toggleGlow() {
+    state.glow = !state.glow;
+    applySwitch('toggleGlowBtn', 'glowThumb', state.glow);
+  }
+
+  function toggleBlur() {
+    state.blur = !state.blur;
+    applySwitch('toggleBlurBtn', 'blurThumb', state.blur);
+    renderLayoutContent();
+  }
+
+  function toggleBorder() {
+    state.showBorder = !state.showBorder;
+    applySwitch('toggleBorderBtn', 'borderThumb', state.showBorder);
+    renderLayoutContent();
+  }
+
+  function updateSettings() {
+    const countSlider = document.getElementById('lineCountSlider');
+    if (countSlider) {
+      state.lineCount = parseInt(countSlider.value);
+      document.getElementById('lineCountVal').textContent = state.lineCount;
+    }
+
+    const speedSlider = document.getElementById('speedSlider');
+    if (speedSlider) {
+      state.speed = parseFloat(speedSlider.value);
+      document.getElementById('speedVal').textContent = `${state.speed}s`;
+    }
+
+    const fontSelect = document.getElementById('fontSelect');
+    if (fontSelect && fontSelect.value) state.font = fontSelect.value;
+
+    const fontSizeSlider = document.getElementById('fontSizeSlider');
+    if (fontSizeSlider) {
+      state.fontSizePx = parseInt(fontSizeSlider.value);
+      document.getElementById('fontSizeVal').textContent = `${state.fontSizePx}px`;
+    }
+
+    const bodySizeSlider = document.getElementById('bodySizeSlider');
+    if (bodySizeSlider) {
+      state.bodySizePx = parseInt(bodySizeSlider.value);
+      document.getElementById('bodySizeVal').textContent = `${state.bodySizePx}px`;
+    }
+
+    const colorPicker = document.getElementById('textColorPicker');
+    if (colorPicker) {
+      state.textColor = colorPicker.value;
+      document.getElementById('textColorHex').textContent = state.textColor;
+    }
+
+    const bodyColorPicker = document.getElementById('bodyColorPicker');
+    if (bodyColorPicker) {
+      state.bodyColor = bodyColorPicker.value;
+      document.getElementById('bodyColorHex').textContent = state.bodyColor;
+    }
+
+    const lineColorPicker = document.getElementById('lineColorPicker');
+    if (lineColorPicker) {
+      state.lineColor = lineColorPicker.value;
+      document.getElementById('lineColorHex').textContent = state.lineColor;
+    }
+
+    const bgColorPicker = document.getElementById('bgColorPicker');
+    if (bgColorPicker) {
+      state.bgColor = bgColorPicker.value;
+      document.getElementById('bgColorHex').textContent = state.bgColor;
+      const previewBox = document.getElementById('embedPreviewContainer');
+      if (previewBox) previewBox.style.backgroundColor = state.bgColor;
+    }
+
+    const opacitySlider = document.getElementById('cardOpacitySlider');
+    if (opacitySlider) {
+      state.cardOpacity = parseFloat(opacitySlider.value);
+      document.getElementById('cardOpacityVal').textContent = state.cardOpacity.toFixed(2);
+    }
+
+    const borderColorPicker = document.getElementById('borderColorPicker');
+    if (borderColorPicker) {
+      state.borderColor = borderColorPicker.value;
+      document.getElementById('borderColorHex').textContent = state.borderColor;
+    }
+
+    const borderWidthSlider = document.getElementById('borderWidthSlider');
+    if (borderWidthSlider) {
+      state.borderWidth = parseInt(borderWidthSlider.value);
+      document.getElementById('borderWidthVal').textContent = `${state.borderWidth}px`;
+    }
+
+    const borderRadiusSlider = document.getElementById('borderRadiusSlider');
+    if (borderRadiusSlider) {
+      state.borderRadius = parseInt(borderRadiusSlider.value);
+      document.getElementById('borderRadiusVal').textContent = `${state.borderRadius}px`;
+    }
+
+    renderLayoutContent();
+  }
+
+  // --- CUSTOM GOOGLE FONT LOADER ---
+  function applyCustomFont() {
+    const input = document.getElementById('customFontInput');
+    const status = document.getElementById('customFontStatus');
+    if (!input) return;
+    const name = input.value.trim();
+    if (!name) return;
+
+    const family = name.replace(/\s+/g, '+');
+    const linkId = 'gfont-' + family;
+    if (!document.getElementById(linkId)) {
+      const link = document.createElement('link');
+      link.id = linkId;
+      link.rel = 'stylesheet';
+      link.href = `https://fonts.googleapis.com/css2?family=${family}:wght@300;400;600;700&display=swap`;
+      document.head.appendChild(link);
+    }
+
+    state.font = name;
+
+    const sel = document.getElementById('fontSelect');
+    if (sel) {
+      const exists = Array.from(sel.options).some(o => o.value === name);
+      if (!exists) {
+        const opt = document.createElement('option');
+        opt.value = name;
+        opt.textContent = name + ' (Custom)';
+        sel.appendChild(opt);
+      }
+      sel.value = name;
+    }
+
+    if (status) status.textContent = `Loaded "${name}" ✓`;
+    renderLayoutContent();
+  }
+
+  function updateColumnText(colId, field, value) {
+    const col = state.columns.find(c => c.id === colId);
+    if (col) {
+      col[field] = value;
+    }
+  }
+
+  // --- SYNC DOM CONTROLS FROM STATE (used by reset) ---
+  function syncInputsFromState() {
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+    set('lineCountSlider', state.lineCount);
+    set('speedSlider', state.speed);
+    set('lineColorPicker', state.lineColor);
+    set('fontSizeSlider', state.fontSizePx);
+    set('bodySizeSlider', state.bodySizePx);
+    set('textColorPicker', state.textColor);
+    set('bodyColorPicker', state.bodyColor);
+    set('bgColorPicker', state.bgColor);
+    set('cardOpacitySlider', state.cardOpacity);
+    set('borderColorPicker', state.borderColor);
+    set('borderWidthSlider', state.borderWidth);
+    set('borderRadiusSlider', state.borderRadius);
+
+    const sel = document.getElementById('fontSelect');
+    if (sel) sel.value = state.font;
+
+    applySwitch('toggleGlowBtn', 'glowThumb', state.glow);
+    applySwitch('toggleBlurBtn', 'blurThumb', state.blur);
+    applySwitch('toggleBorderBtn', 'borderThumb', state.showBorder);
+  }
+
+  function resetDefaults() {
+    state = {
+      design: 'arcs',
+      lineCount: 16,
+      speed: 10,
+      lineColor: '#ffffff',
+      glow: false,
+      bgColor: '#10172b',
+      cardOpacity: 0.4,
+      blur: true,
+      showBorder: true,
+      borderColor: '#1e293b',
+      borderWidth: 1,
+      borderRadius: 16,
+      font: 'Inter',
+      fontSizePx: 36,
+      bodySizePx: 16,
+      textColor: '#ffffff',
+      bodyColor: '#cbd5e1',
+      align: 'center',
+      columns: [
+        { id: 1, span: 6, type: 'image', imgUrl: DEFAULT_IMG, title: 'Flowing Motion System', subtext: 'Click directly on any text inside this block to edit it live, just like Google Sites!' },
+        { id: 2, span: 6, type: 'text', imgUrl: '', title: 'Google Sites Flexible Grid', subtext: 'You can adjust column span widths, add new columns, or delete unwanted content blocks effortlessly.' }
+      ]
+    };
+    syncInputsFromState();
+    renderDesignList();
+    setTextAlign('center');
+    selectLayoutPreset('1-col');
+    updateSettings();
+  }
+
+  // --- RENDER LAYOUT CONTENT IN PREVIEW ---
+  function renderLayoutContent() {
+    const wrapper = document.getElementById('layoutContentWrapper');
+    if (!wrapper) return;
+
+    const alignClass = state.align === 'left' ? 'text-left items-start' : (state.align === 'right' ? 'text-right items-end' : 'text-center items-center');
+    const blurClass = state.blur ? 'backdrop-blur' : '';
+    const borderCss = state.showBorder && state.borderWidth > 0
+      ? `${state.borderWidth}px solid ${state.borderColor}`
+      : '1px solid transparent';
+    const cardBaseStyle = `background-color: rgba(15, 23, 42, ${state.cardOpacity}); border: ${borderCss}; border-radius: ${state.borderRadius}px;`;
+
+    const html = `
+      <div class="grid grid-cols-12 gap-6 w-full items-center">
+        ${state.columns.map(col => {
+          const isImgOnly = col.type === 'image-only';
+          const cardClass = isImgOnly
+            ? `col-span-12 md:col-span-${col.span} ${blurClass} transition relative group overflow-hidden`
+            : `col-span-12 md:col-span-${col.span} space-y-4 p-5 ${blurClass} transition relative group`;
+
+          const imgBlock = col.type === 'text' ? '' : `
+            <div class="${isImgOnly ? 'w-full h-64 md:h-80' : 'w-full h-48 md:h-56 rounded-xl shadow-lg border border-slate-800/80 bg-slate-900/60'} overflow-hidden relative">
+              <img src="${col.imgUrl}" alt="Column Image" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=Image+Placeholder'">
+              <div class="absolute bottom-2 right-2 flex items-center space-x-1.5 opacity-0 group-hover:opacity-100 transition">
+                <button onclick="promptImageChange(${col.id})" class="px-2.5 py-1 bg-slate-950/80 hover:bg-slate-900 text-white text-[11px] font-medium rounded-md border border-slate-700 backdrop-blur">Image URL</button>
+                <button onclick="triggerImageUpload(${col.id})" class="px-2.5 py-1 bg-indigo-600/90 hover:bg-indigo-500 text-white text-[11px] font-medium rounded-md border border-indigo-500 backdrop-blur">Upload</button>
+              </div>
+              <input type="file" accept="image/*" id="file-${col.id}" class="hidden" onchange="handleImageUpload(${col.id}, this)">
+            </div>
+          `;
+
+          const textBlock = isImgOnly ? '' : `
+            <div class="flex flex-col ${alignClass}">
+              <h2 contenteditable="true" onblur="updateColumnText(${col.id}, 'title', this.innerText)" style="font-family: '${state.font}', sans-serif; font-size: ${state.fontSizePx}px; color: ${state.textColor};" class="font-bold leading-tight mb-2 w-full">${col.title}</h2>
+              <p contenteditable="true" onblur="updateColumnText(${col.id}, 'subtext', this.innerText)" style="font-family: '${state.font}', sans-serif; font-size: ${state.bodySizePx}px; color: ${state.bodyColor};" class="leading-relaxed w-full">${col.subtext}</p>
+            </div>
+          `;
+
+          return `
+            <div class="${cardClass}" style="${cardBaseStyle}">
+              ${imgBlock}
+              ${textBlock}
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+
+    wrapper.innerHTML = html;
+  }
+
+  function promptImageChange(colId) {
+    const col = state.columns.find(c => c.id === colId);
+    if (!col) return;
+    const newUrl = prompt('Paste direct image URL:', col.imgUrl);
+    if (newUrl !== null && newUrl.trim() !== '') {
+      col.imgUrl = newUrl.trim();
+      renderLayoutContent();
+    }
+  }
+
+  // --- LOCAL IMAGE UPLOAD ---
+  function triggerImageUpload(colId) {
+    const input = document.getElementById(`file-${colId}`);
+    if (input) input.click();
+  }
+
+  function handleImageUpload(colId, input) {
+    const file = input && input.files && input.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const col = state.columns.find(c => c.id === colId);
+      if (col) {
+        col.imgUrl = e.target.result;
+        renderLayoutContent();
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // --- DASH RIBBON SHAPES (ported from the classic SVG build) ---
+  const DASH_SHAPE_SPACING = { 'svg-arc': 26, 'svg-helix': 22, 'svg-winding': 24, 'svg-daggered': 28 };
+
+  function getDashShapePath(design, off) {
+    if (design === 'svg-arc')     return { kind: 'b', pts: [250 + off, -50, 700 + off, 120, 950 + off, 350, 1050 + off, 650] };
+    if (design === 'svg-helix')   return { kind: 'b', pts: [600 + off, -50, 1050 + off, 150, 150 + off, 350, 600 + off, 650] };
+    if (design === 'svg-winding') return { kind: 'b', pts: [150 + off, -50, 950 + off, 100, 250 + off, 400, 1050 + off, 650] };
+    if (design === 'svg-daggered') return { kind: 'p', pts: [200 + off, -50, 850 + off, 150, 350 + off, 350, 1000 + off, 650] };
+    return null;
+  }
+
+  // Draws the classic "Parallel Sweeping Arc" family with stroke-dash flow
+  function drawDashRibbons(ctx, canvas, sec) {
+    const spacing = DASH_SHAPE_SPACING[state.design] || 26;
+    const count = state.lineCount;
+
+    ctx.save();
+    ctx.scale(canvas.width / 1200, canvas.height / 600);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    for (let i = 0; i < count; i++) {
+      const off = (i - Math.floor(count / 2)) * spacing;
+      const shape = getDashShapePath(state.design, off);
+      if (!shape) continue;
+
+      const norm = i / count;
+      const strokeWidth = 1.2 + (1 - Math.abs(norm - 0.5) * 1.5) * 1.5;
+      const opacity = 0.25 + (1 - Math.abs(norm - 0.5)) * 0.65;
+      const delay = i * 0.12;
+      const elapsed = sec - delay;
+      const dashOffset = elapsed < 0 ? 1500 : 1500 * (1 - ((elapsed % state.speed) / state.speed));
+
+      ctx.beginPath();
+      if (shape.kind === 'b') {
+        ctx.moveTo(shape.pts[0], shape.pts[1]);
+        ctx.bezierCurveTo(shape.pts[2], shape.pts[3], shape.pts[4], shape.pts[5], shape.pts[6], shape.pts[7]);
+      } else {
+        ctx.moveTo(shape.pts[0], shape.pts[1]);
+        for (let k = 2; k < shape.pts.length; k += 2) ctx.lineTo(shape.pts[k], shape.pts[k + 1]);
+      }
+
+      ctx.globalAlpha = opacity;
+      ctx.lineWidth = strokeWidth;
+      ctx.setLineDash([600, 900]);
+      ctx.lineDashOffset = dashOffset;
+      ctx.strokeStyle = state.lineColor;
+      if (state.glow) {
+        ctx.shadowColor = state.lineColor;
+        ctx.shadowBlur = 8;
+      } else {
+        ctx.shadowBlur = 0;
+      }
+      ctx.stroke();
+    }
+
+    ctx.restore();
+  }
+
+  // --- CANVAS ANIMATION ENGINE FOR ALL LINE DESIGNS ---
+  function initCanvasAnimation() {
+    const canvas = document.getElementById('bgCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let time = 0;
+
+    function resize() {
+      if (!canvas.parentElement) return;
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = canvas.parentElement.clientHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function animate(ts) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      time += 0.015 * (10 / state.speed);
+
+      // Parse stroke color to RGB for transparency overlay
+      ctx.strokeStyle = state.glow ? state.lineColor : `${state.lineColor}cc`;
+      ctx.fillStyle = ctx.strokeStyle;
+      if(state.glow) {
+        ctx.shadowColor = state.lineColor;
+        ctx.shadowBlur = 8;
+      } else {
+        ctx.shadowBlur = 0;
+      }
+
+      const count = state.lineCount;
+
+      if(state.design === 'arcs') {
+        for(let i = 0; i < count; i++) {
+          ctx.beginPath();
+          const spacing = canvas.width / (count + 1);
+          const startX = spacing * (i + 1);
+          ctx.moveTo(startX, 0);
+          
+          const cp1x = startX + Math.sin(time + i) * 150;
+          const cp1y = canvas.height * 0.4;
+          const cp2x = startX + Math.cos(time * 0.8 + i) * 200;
+          const cp2y = canvas.height * 0.7;
+          const endX = startX + Math.sin(time * 0.5) * 100;
+
+          ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, endX, canvas.height);
+          ctx.lineWidth = 1 + (i % 3) * 0.5;
+          ctx.stroke();
+        }
+      } else if(state.design === 'topo') {
+        for(let i = 0; i < count; i++) {
+          ctx.beginPath();
+          const yBase = (canvas.height / count) * i;
+          for(let x = 0; x <= canvas.width; x += 15) {
+            const yOffset = Math.sin(x * 0.008 + time + i * 0.3) * 35 + Math.cos(x * 0.003 - time * 0.5) * 20;
+            const y = yBase + yOffset;
+            if(x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+        }
+      } else if(state.design === 'grid') {
+        ctx.lineWidth = 1;
+        const spacingX = canvas.width / count;
+        for(let i = 0; i <= count; i++) {
+          const x = i * spacingX + Math.sin(time + i) * 15;
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x - 100, canvas.height);
+          ctx.stroke();
+        }
+      } else if(state.design === 'circuit') {
+        for(let i = 0; i < count; i++) {
+          ctx.beginPath();
+          let x = (canvas.width / count) * i + Math.sin(time + i) * 20;
+          let y = 0;
+          ctx.moveTo(x, y);
+          while(y < canvas.height) {
+            y += 40 + (i % 3) * 15;
+            ctx.lineTo(x, y);
+            x += (i % 2 === 0 ? 30 : -30);
+            ctx.lineTo(x, y);
+          }
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+      } else if(state.design === 'neon') {
+        for(let i = 0; i < count; i++) {
+          ctx.beginPath();
+          const yBase = (canvas.height / count) * i;
+          for(let x = 0; x <= canvas.width; x += 10) {
+            const y = yBase + Math.sin(x * 0.01 + time * 1.5 + i) * 45;
+            if(x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+      } else if(state.design === 'fluid') {
+        for(let i = 0; i < count; i++) {
+          ctx.beginPath();
+          const startX = (canvas.width / count) * i;
+          ctx.moveTo(startX, 0);
+          ctx.bezierCurveTo(
+            startX + Math.sin(time + i) * 200, canvas.height * 0.3,
+            startX - Math.cos(time * 0.7 + i) * 250, canvas.height * 0.7,
+            startX + Math.sin(time * 0.5) * 100, canvas.height
+          );
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+      } else if(state.design === 'wireframe') {
+        const cols = count;
+        const rows = 12;
+        const colWidth = canvas.width / cols;
+        const rowHeight = canvas.height / rows;
+        for(let r = 0; r < rows; r++) {
+          ctx.beginPath();
+          for(let c = 0; c <= cols; c++) {
+            const x = c * colWidth;
+            const y = r * rowHeight + Math.sin(time + c * 0.5) * 15;
+            if(c === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      } else if(state.design.indexOf('svg-') === 0) {
+        drawDashRibbons(ctx, canvas, (ts || 0) / 1000);
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  function closeModal() {
+    const exportModal = document.getElementById('exportModal');
+    if (exportModal) exportModal.classList.add('hidden');
+  }
+
+  // --- EXPORT: per-design animation script ---
+  function getCanvasDesignBody() {
+    switch (state.design) {
+      case 'topo':
+        return `    for(let i = 0; i < count; i++) {
+      ctx.beginPath();
+      const yBase = (canvas.height / count) * i;
+      for(let x = 0; x <= canvas.width; x += 15) {
+        const yOffset = Math.sin(x * 0.008 + time + i * 0.3) * 35 + Math.cos(x * 0.003 - time * 0.5) * 20;
+        const y = yBase + yOffset;
+        if(x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+    }`;
+      case 'grid':
+        return `    ctx.lineWidth = 1;
+    const spacingX = canvas.width / count;
+    for(let i = 0; i <= count; i++) {
+      const x = i * spacingX + Math.sin(time + i) * 15;
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x - 100, canvas.height);
+      ctx.stroke();
+    }`;
+      case 'circuit':
+        return `    for(let i = 0; i < count; i++) {
+      ctx.beginPath();
+      let x = (canvas.width / count) * i + Math.sin(time + i) * 20;
+      let y = 0;
+      ctx.moveTo(x, y);
+      while(y < canvas.height) {
+        y += 40 + (i % 3) * 15;
+        ctx.lineTo(x, y);
+        x += (i % 2 === 0 ? 30 : -30);
+        ctx.lineTo(x, y);
+      }
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }`;
+      case 'neon':
+        return `    for(let i = 0; i < count; i++) {
+      ctx.beginPath();
+      const yBase = (canvas.height / count) * i;
+      for(let x = 0; x <= canvas.width; x += 10) {
+        const y = yBase + Math.sin(x * 0.01 + time * 1.5 + i) * 45;
+        if(x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }`;
+      case 'fluid':
+        return `    for(let i = 0; i < count; i++) {
+      ctx.beginPath();
+      const startX = (canvas.width / count) * i;
+      ctx.moveTo(startX, 0);
+      ctx.bezierCurveTo(
+        startX + Math.sin(time + i) * 200, canvas.height * 0.3,
+        startX - Math.cos(time * 0.7 + i) * 250, canvas.height * 0.7,
+        startX + Math.sin(time * 0.5) * 100, canvas.height
+      );
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }`;
+      case 'wireframe':
+        return `    const cols = count;
+    const rows = 12;
+    const colWidth = canvas.width / cols;
+    const rowHeight = canvas.height / rows;
+    for(let r = 0; r < rows; r++) {
+      ctx.beginPath();
+      for(let c = 0; c <= cols; c++) {
+        const x = c * colWidth;
+        const y = r * rowHeight + Math.sin(time + c * 0.5) * 15;
+        if(c === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }`;
+      default:
+        return `    for(let i = 0; i < count; i++) {
+      ctx.beginPath();
+      const spacing = canvas.width / (count + 1);
+      const startX = spacing * (i + 1);
+      ctx.moveTo(startX, 0);
+
+      const cp1x = startX + Math.sin(time + i) * 150;
+      const cp1y = canvas.height * 0.4;
+      const cp2x = startX + Math.cos(time * 0.8 + i) * 200;
+      const cp2y = canvas.height * 0.7;
+      const endX = startX + Math.sin(time * 0.5) * 100;
+
+      ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, endX, canvas.height);
+      ctx.lineWidth = 1 + (i % 3) * 0.5;
+      ctx.stroke();
+    }`;
+    }
+  }
+
+  function buildExportAnimationScript() {
+    if (state.design.indexOf('svg-') === 0) {
+      return `
+  const DESIGN = '${state.design}';
+  const COUNT = ${state.lineCount};
+  const SPEED = ${state.speed};
+  const COLOR = '${state.lineColor}';
+  const GLOW = ${state.glow ? 'true' : 'false'};
+  const SPACING = { 'svg-arc': 26, 'svg-helix': 22, 'svg-winding': 24, 'svg-daggered': 28 }[DESIGN];
+
+  function getPath(off) {
+    if (DESIGN === 'svg-arc')     return ['b', 250+off,-50, 700+off,120, 950+off,350, 1050+off,650];
+    if (DESIGN === 'svg-helix')   return ['b', 600+off,-50, 1050+off,150, 150+off,350, 600+off,650];
+    if (DESIGN === 'svg-winding') return ['b', 150+off,-50, 950+off,100, 250+off,400, 1050+off,650];
+    return ['p', 200+off,-50, 850+off,150, 350+off,350, 1000+off,650];
+  }
+
+  function animate(ts) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const sec = (ts || 0) / 1000;
+    ctx.save();
+    ctx.scale(canvas.width / 1200, canvas.height / 600);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    for (let i = 0; i < COUNT; i++) {
+      const off = (i - Math.floor(COUNT / 2)) * SPACING;
+      const p = getPath(off);
+      const norm = i / COUNT;
+      const w = 1.2 + (1 - Math.abs(norm - 0.5) * 1.5) * 1.5;
+      const op = 0.25 + (1 - Math.abs(norm - 0.5)) * 0.65;
+      const delay = i * 0.12;
+      const el = sec - delay;
+      const dash = el < 0 ? 1500 : 1500 * (1 - ((el % SPEED) / SPEED));
+      ctx.beginPath();
+      if (p[0] === 'b') {
+        ctx.moveTo(p[1], p[2]);
+        ctx.bezierCurveTo(p[3], p[4], p[5], p[6], p[7], p[8]);
+      } else {
+        ctx.moveTo(p[1], p[2]);
+        for (let k = 3; k < p.length; k += 2) ctx.lineTo(p[k], p[k + 1]);
+      }
+      ctx.globalAlpha = op;
+      ctx.lineWidth = w;
+      ctx.setLineDash([600, 900]);
+      ctx.lineDashOffset = dash;
+      ctx.strokeStyle = COLOR;
+      if (GLOW) { ctx.shadowColor = COLOR; ctx.shadowBlur = 8; } else { ctx.shadowBlur = 0; }
+      ctx.stroke();
+    }
+    ctx.restore();
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);`;
+    }
+
+    const strokeColor = state.glow ? state.lineColor : state.lineColor + 'cc';
+    const glowSetup = state.glow
+      ? `ctx.shadowColor = '${state.lineColor}';\n    ctx.shadowBlur = 8;`
+      : `ctx.shadowBlur = 0;`;
+
+    return `
+  function animate(ts) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    time += 0.015 * (10 / ${state.speed});
+    ctx.strokeStyle = '${strokeColor}';
+    ctx.fillStyle = ctx.strokeStyle;
+    ${glowSetup}
+
+    const count = ${state.lineCount};
+${getCanvasDesignBody()}
+
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);`;
+  }
+
+  function generateEmbedSnippet() {
+    const blurCss = state.blur
+      ? 'backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);'
+      : '';
+    const borderCss = state.showBorder && state.borderWidth > 0
+      ? `border: ${state.borderWidth}px solid ${state.borderColor};`
+      : 'border: none;';
+
+    const contentHTML = `
+      <div class="flow-grid">
+        ${state.columns.map((col, idx) => {
+          const isImgOnly = col.type === 'image-only';
+          const cardStyle = isImgOnly
+            ? `padding: 0; overflow: hidden; border-radius: ${state.borderRadius}px; background-color: rgba(15, 23, 42, ${state.cardOpacity}); ${borderCss} ${blurCss} box-sizing: border-box;`
+            : `padding: 20px; border-radius: ${state.borderRadius}px; background-color: rgba(15, 23, 42, ${state.cardOpacity}); ${borderCss} ${blurCss} box-sizing: border-box;`;
+
+          const imgBlock = col.type === 'text' ? '' : `
+            <div style="width: 100%; height: ${isImgOnly ? '320px' : '220px'}; border-radius: ${isImgOnly ? '0' : '0.75rem'}; overflow: hidden; ${isImgOnly ? '' : 'margin-bottom: 1rem; border: 1px solid rgba(51, 65, 85, 0.8);'}">
+              <img src="${col.imgUrl}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            </div>
+          `;
+
+          const textBlock = isImgOnly ? '' : `
+            <div style="display: flex; flex-direction: column; text-align: ${state.align}; align-items: ${state.align === 'left' ? 'flex-start' : (state.align === 'right' ? 'flex-end' : 'center')};">
+              <h2 style="font-family: '${state.font}', sans-serif; font-size: ${state.fontSizePx}px; color: ${state.textColor}; font-weight: 700; margin: 0 0 0.5rem 0; line-height: 1.2;">${col.title}</h2>
+              <p style="font-family: '${state.font}', sans-serif; font-size: ${state.bodySizePx}px; color: ${state.bodyColor}; margin: 0; line-height: 1.5;">${col.subtext}</p>
+            </div>
+          `;
+
+          return `<div class="flow-card flow-col-${idx}" style="${cardStyle}">${imgBlock}${textBlock}</div>`;
+        }).join('')}
+      </div>
+    `;
+
+    const mediaRules = state.columns.map((col, idx) =>
+      `    .flow-col-${idx} { grid-column: span ${col.span}; }`
+    ).join('\n');
+
+    const animScript = buildExportAnimationScript();
+
+    const snippet = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=${state.font.replace(/ /g, '+')}:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background-color: ${state.bgColor}; }
+  .flow-container {
+    position: relative;
+    width: 100%;
+    min-height: 520px;
+    background-color: ${state.bgColor};
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: '${state.font}', sans-serif;
+  }
+  .content-box {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 24px;
+  }
+  .flow-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 24px;
+    width: 100%;
+    align-items: center;
+  }
+  .flow-card { grid-column: span 12; }
+  @media (min-width: 768px) {
+${mediaRules}
+  }
+</style>
+</head>
+<body>
+
+<div class="flow-container">
+  <canvas id="embedCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
+  
+  <div class="content-box">
+    ${contentHTML}
+  </div>
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('embedCanvas');
+    const ctx = canvas.getContext('2d');
+    let time = 0;
+
+    function resize() {
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = canvas.parentElement.clientHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+${animScript}
+  });
+<\/script>
+</body>
+</html>`;
+
+    const codeOutput = document.getElementById('codeOutput');
+    if (codeOutput) codeOutput.textContent = snippet.trim();
+  }
+
+  function copyEmbedCode() {
+    const codeOutput = document.getElementById('codeOutput');
+    if (!codeOutput) return;
+    const codeText = codeOutput.textContent;
+    const tempInput = document.createElement('textarea');
+    tempInput.value = codeText;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+
+    const toast = document.getElementById('toast');
+    if (toast) {
+      toast.classList.remove('opacity-0', 'translate-y-3', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-3', 'pointer-events-none');
+      }, 3000);
+    }
+  }
+
+  // --- INITIALIZATION ---
+  window.onload = () => {
+    renderDesignList();
+    renderColumnControls();
+    renderLayoutContent();
+    initCanvasAnimation();
+
+    applySwitch('toggleGlowBtn', 'glowThumb', state.glow);
+    applySwitch('toggleBlurBtn', 'blurThumb', state.blur);
+    applySwitch('toggleBorderBtn', 'borderThumb', state.showBorder);
+
+    const opacityVal = document.getElementById('cardOpacityVal');
+    if (opacityVal) opacityVal.textContent = state.cardOpacity.toFixed(2);
+
+    const exportModalBtn = document.getElementById('exportModalBtn');
+    const exportModal = document.getElementById('exportModal');
+    if (exportModalBtn && exportModal) {
+      exportModalBtn.addEventListener('click', () => {
+        generateEmbedSnippet();
+        exportModal.classList.remove('hidden');
+      });
+    }
+  };
+</script>
+
+</body></html>
